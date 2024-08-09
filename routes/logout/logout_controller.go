@@ -2,7 +2,7 @@ package logout
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"github.com/webdevcody/go-mailing-list/auth"
+	"github.com/lemarsupial/go-mailing-list/auth"
 
 	_ "github.com/mattn/go-sqlite3"
 )

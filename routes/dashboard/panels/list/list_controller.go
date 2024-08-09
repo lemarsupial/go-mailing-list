@@ -7,9 +7,9 @@ import (
 	"github.com/a-h/templ"
 	"github.com/go-playground/validator"
 	"github.com/gofiber/fiber/v2"
-	"github.com/webdevcody/go-mailing-list/auth"
-	dataAccess "github.com/webdevcody/go-mailing-list/data-access"
-	"github.com/webdevcody/go-mailing-list/utils"
+	"github.com/lemarsupial/go-mailing-list/auth"
+	dataAccess "github.com/lemarsupial/go-mailing-list/data-access"
+	"github.com/lemarsupial/go-mailing-list/utils"
 
 	_ "github.com/mattn/go-sqlite3"
 )

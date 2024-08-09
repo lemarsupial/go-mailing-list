@@ -8,8 +8,8 @@ import (
 
 	"github.com/a-h/templ"
 	"github.com/gofiber/fiber/v2"
-	"github.com/webdevcody/go-mailing-list/auth"
-	"github.com/webdevcody/go-mailing-list/utils"
+	"github.com/lemarsupial/go-mailing-list/auth"
+	"github.com/lemarsupial/go-mailing-list/utils"
 
 	_ "github.com/mattn/go-sqlite3"
 )

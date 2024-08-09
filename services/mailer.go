@@ -9,7 +9,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/ses"
-	dataAccess "github.com/webdevcody/go-mailing-list/data-access"
+	dataAccess "github.com/lemarsupial/go-mailing-list/data-access"
 )
 
 type EmailData struct {

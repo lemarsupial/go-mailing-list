@@ -8,7 +8,7 @@ import (
 	"strings"
 
 	"github.com/gofiber/fiber/v2"
-	dataAccess "github.com/webdevcody/go-mailing-list/data-access"
+	dataAccess "github.com/lemarsupial/go-mailing-list/data-access"
 )
 
 const sessionIdLength = 32

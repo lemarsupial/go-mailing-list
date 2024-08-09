@@ -4,12 +4,12 @@ import (
 	"fmt"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/webdevcody/go-mailing-list/auth"
-	dataAccess "github.com/webdevcody/go-mailing-list/data-access"
-	"github.com/webdevcody/go-mailing-list/routes/dashboard"
-	"github.com/webdevcody/go-mailing-list/routes/login"
-	"github.com/webdevcody/go-mailing-list/routes/logout"
-	"github.com/webdevcody/go-mailing-list/routes/unsubscribe"
+	"github.com/lemarsupial/go-mailing-list/auth"
+	dataAccess "github.com/lemarsupial/go-mailing-list/data-access"
+	"github.com/lemarsupial/go-mailing-list/routes/dashboard"
+	"github.com/lemarsupial/go-mailing-list/routes/login"
+	"github.com/lemarsupial/go-mailing-list/routes/logout"
+	"github.com/lemarsupial/go-mailing-list/routes/unsubscribe"
 )
 
 func RegisterRoutes(app *fiber.App) {

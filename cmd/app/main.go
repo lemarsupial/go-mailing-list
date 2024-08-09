@@ -5,8 +5,8 @@ import (
 	"os"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/webdevcody/go-mailing-list/migrations"
-	"github.com/webdevcody/go-mailing-list/routes"
+	"github.com/lemarsupial/go-mailing-list/migrations"
+	"github.com/lemarsupial/go-mailing-list/routes"
 )
 
 func main() {

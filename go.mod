@@ -1,4 +1,4 @@
-module github.com/webdevcody/go-mailing-list
+module github.com/lemarsupial/go-mailing-list
 
 go 1.22.5
 

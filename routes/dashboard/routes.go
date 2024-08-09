@@ -2,9 +2,9 @@ package dashboard
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"github.com/webdevcody/go-mailing-list/auth"
-	"github.com/webdevcody/go-mailing-list/routes/dashboard/panels/compose"
-	"github.com/webdevcody/go-mailing-list/routes/dashboard/panels/list"
+	"github.com/lemarsupial/go-mailing-list/auth"
+	"github.com/lemarsupial/go-mailing-list/routes/dashboard/panels/compose"
+	"github.com/lemarsupial/go-mailing-list/routes/dashboard/panels/list"
 )
 
 func RegisterDashboard(app *fiber.App) {

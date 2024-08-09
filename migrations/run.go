@@ -1,7 +1,7 @@
 package migrations
 
 import (
-	"github.com/webdevcody/go-mailing-list/db"
+	"github.com/lemarsupial/go-mailing-list/db"
 )
 
 func Up(key string, upFun func()) {

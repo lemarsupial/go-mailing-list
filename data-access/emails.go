@@ -1,7 +1,7 @@
 package dataAccess
 
 import (
-	"github.com/webdevcody/go-mailing-list/db"
+	"github.com/lemarsupial/go-mailing-list/db"
 )
 
 type Email struct {
