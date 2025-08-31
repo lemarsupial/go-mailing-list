@@ -13,8 +13,7 @@ type Template struct {
 }
 
 func CreateTemplate(mjml string, html string, text string, subject string) (Template, error) {
-	db := db.GetDB()
-	stmt, err := db.Prepare("INSERT INTO templates (mjml, html, text, subject) VALUES (?, ?, ?, ?) RETURNING id, mjml, html, text, subject")
+	stmt, err := db.DbHandle.Prepare("INSERT INTO templates (mjml, html, text, subject) VALUES (?, ?, ?, ?) RETURNING id, mjml, html, text, subject")
 	if err != nil {
 		panic(err)
 	}
@@ -34,8 +33,7 @@ func CreateTemplate(mjml string, html string, text string, subject string) (Temp
 }
 
 func UpdateTemplate(id int64, mjml string, html string, text string, subject string) (Template, error) {
-	db := db.GetDB()
-	stmt, err := db.Prepare("UPDATE templates SET mjml = ?, html = ?, text = ?, subject = ? WHERE id = ? RETURNING id, mjml, html, text, subject")
+	stmt, err := db.DbHandle.Prepare("UPDATE templates SET mjml = ?, html = ?, text = ?, subject = ? WHERE id = ? RETURNING id, mjml, html, text, subject")
 	if err != nil {
 		panic(err)
 	}
@@ -56,8 +54,7 @@ func UpdateTemplate(id int64, mjml string, html string, text string, subject str
 }
 
 func DeleteTemplate(templateId int64) error {
-	db := db.GetDB()
-	stmt, err := db.Prepare("DELETE FROM templates WHERE id = ?")
+	stmt, err := db.DbHandle.Prepare("DELETE FROM templates WHERE id = ?")
 	if err != nil {
 		return err
 	}
@@ -69,8 +66,7 @@ func DeleteTemplate(templateId int64) error {
 }
 
 func GetTemplate(templateId int64) (Template, error) {
-	db := db.GetDB()
-	stmt, err := db.Prepare("SELECT * FROM templates WHERE id = ?")
+	stmt, err := db.DbHandle.Prepare("SELECT * FROM templates WHERE id = ?")
 	if err != nil {
 		return Template{}, err
 	}
@@ -86,8 +82,7 @@ func GetTemplate(templateId int64) (Template, error) {
 }
 
 func GetTemplates() ([]Template, error) {
-	db := db.GetDB()
-	results, err := db.Query("SELECT * FROM templates")
+	results, err := db.DbHandle.Query("SELECT * FROM templates")
 	if err != nil {
 		return nil, err
 	}

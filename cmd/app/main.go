@@ -5,19 +5,24 @@ import (
 	"os"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/compress"
+	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/lemarsupial/go-mailing-list/migrations"
 	"github.com/lemarsupial/go-mailing-list/routes"
 )
 
 func main() {
+
 	migrations.RunMigrations()
 
 	app := fiber.New(fiber.Config{
 		Network:          fiber.NetworkTCP,
 		DisableKeepalive: false,
 	})
-
-	// app.Use(logger.New())
+	app.Use(logger.New())
+	app.Use(compress.New(compress.Config{
+		Level: compress.LevelBestSpeed, // 1
+	}))
 
 	app.Static("/public", "./public")
 

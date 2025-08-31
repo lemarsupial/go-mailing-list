@@ -21,10 +21,10 @@ func ApiAuthMiddleware(c *fiber.Ctx) error {
 }
 
 func AssertAuthenticatedMiddleware(c *fiber.Ctx) error {
-	if !IsAuthenticated(c) {
-		c.Set("HX-Redirect", "/login")
-		return c.Redirect("/login")
-	}
+	// if !IsAuthenticated(c) {
+	// 	c.Set("HX-Redirect", "/login")
+	// 	return c.Redirect("/login")
+	// }
 	return c.Next()
 }
 

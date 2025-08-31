@@ -11,8 +11,7 @@ type Email struct {
 }
 
 func CreateEmail(email string) (Email, error) {
-	db := db.GetDB()
-	stmt, err := db.Prepare("INSERT INTO emails (email, unsubscribeId) VALUES (?, lower(hex(randomblob(32)))) RETURNING id, email")
+	stmt, err := db.DbHandle.Prepare("INSERT INTO emails (email, unsubscribeId) VALUES (?, lower(hex(randomblob(32)))) RETURNING id, email")
 	if err != nil {
 		panic(err)
 	}
@@ -28,8 +27,8 @@ func CreateEmail(email string) (Email, error) {
 }
 
 func DeleteEmailByEmail(email string) error {
-	db := db.GetDB()
-	stmt, err := db.Prepare("DELETE FROM emails WHERE email = ?")
+
+	stmt, err := db.DbHandle.Prepare("DELETE FROM emails WHERE email = ?")
 	if err != nil {
 		return err
 	}
@@ -41,8 +40,8 @@ func DeleteEmailByEmail(email string) error {
 }
 
 func DeleteEmail(id int64) {
-	db := db.GetDB()
-	stmt, err := db.Prepare("DELETE FROM emails WHERE id = ?")
+
+	stmt, err := db.DbHandle.Prepare("DELETE FROM emails WHERE id = ?")
 	if err != nil {
 		panic(err)
 	}
@@ -53,8 +52,7 @@ func DeleteEmail(id int64) {
 }
 
 func GetEmails() []Email {
-	db := db.GetDB()
-	results, err := db.Query("SELECT * FROM emails")
+	results, err := db.DbHandle.Query("SELECT * FROM emails")
 	if err != nil {
 		panic(err)
 	}
@@ -71,8 +69,7 @@ func GetEmails() []Email {
 }
 
 func DeleteEmailByUnsubscribeId(unsubscribeId string) error {
-	db := db.GetDB()
-	stmt, err := db.Prepare("DELETE FROM emails WHERE unsubscribeId = ?")
+	stmt, err := db.DbHandle.Prepare("DELETE FROM emails WHERE unsubscribeId = ?")
 	if err != nil {
 		return err
 	}

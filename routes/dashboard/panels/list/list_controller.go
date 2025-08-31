@@ -56,7 +56,7 @@ func RegisterListPanel(app *fiber.App) {
 		if hadInvalidEmails {
 			return utils.Render(c, withInvalidEmails(emailList(createdEmails)))
 		} else {
-			return utils.Render(c, emailList(createdEmails))
+			return utils.Render(c, emailListPanel(true, createdEmails))
 		}
 	})
 

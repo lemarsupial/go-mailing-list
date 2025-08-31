@@ -16,6 +16,7 @@ require (
 require (
 	github.com/andybalholm/brotli v1.1.0 // indirect
 	github.com/antlr4-go/antlr/v4 v4.13.0 // indirect
+	github.com/coder/websocket v1.8.12 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/jackc/puddle/v2 v2.2.1 // indirect
@@ -29,8 +30,7 @@ require (
 	github.com/mattn/go-runewidth v0.0.15 // indirect
 	github.com/rivo/uniseg v0.2.0 // indirect
 	github.com/tetratelabs/wazero v1.6.0 // indirect
-	github.com/tursodatabase/go-libsql v0.0.0-20240725130945-f44f2b84c8c8 // indirect
-	github.com/tursodatabase/libsql-client-go v0.0.0-20240723183952-b944339d7e70 // indirect
+	github.com/tursodatabase/libsql-client-go v0.0.0-20240812094001-348a4e45b535 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.51.0 // indirect
 	github.com/valyala/tcplisten v1.0.0 // indirect
@@ -38,5 +38,6 @@ require (
 	golang.org/x/sync v0.6.0 // indirect
 	golang.org/x/sys v0.22.0 // indirect
 	gopkg.in/go-playground/assert.v1 v1.2.1 // indirect
+	gorm.io/gorm v1.25.11 // indirect
 	nhooyr.io/websocket v1.8.10 // indirect
 )

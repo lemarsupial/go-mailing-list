@@ -5,8 +5,7 @@ import (
 )
 
 func Up(key string, upFun func()) {
-	db := db.GetDB()
-	stmt, err := db.Prepare("SELECT key FROM migrations WHERE key = ?")
+	stmt, err := db.DbHandle.Prepare("SELECT key FROM migrations WHERE key = ?")
 	if err != nil {
 		panic(err)
 	}
@@ -17,7 +16,7 @@ func Up(key string, upFun func()) {
 	if err != nil {
 		if err.Error() == "sql: no rows in result set" {
 			upFun()
-			stmt, err = db.Prepare("INSERT INTO migrations (key) VALUES (?)")
+			stmt, err = db.DbHandle.Prepare("INSERT INTO migrations (key) VALUES (?)")
 			if err != nil {
 				panic(err)
 			}
@@ -34,34 +33,33 @@ func Up(key string, upFun func()) {
 }
 
 func RunMigrations() {
-	db := db.GetDB()
-	stmt, err := db.Prepare("CREATE TABLE IF NOT EXISTS migrations (key TEXT PRIMARY KEY, createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP)")
+	stmt, err := db.DbHandle.Prepare("CREATE TABLE IF NOT EXISTS migrations (key TEXT PRIMARY KEY, createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP)")
 	if err != nil {
 		panic(err)
 	}
 	stmt.Exec()
 
 	Up("create-tables", func() {
-		stmt, err = db.Prepare("CREATE TABLE IF NOT EXISTS emails (id INTEGER PRIMARY KEY, email TEXT)")
+		stmt, err = db.DbHandle.Prepare("CREATE TABLE IF NOT EXISTS emails (id INTEGER PRIMARY KEY, email TEXT)")
 		if err != nil {
 			panic(err)
 		}
 		stmt.Exec()
 
-		stmt, err = db.Prepare("CREATE TABLE IF NOT EXISTS sessions (id INTEGER PRIMARY KEY, sessionId TEXT)")
+		stmt, err = db.DbHandle.Prepare("CREATE TABLE IF NOT EXISTS sessions (id INTEGER PRIMARY KEY, sessionId TEXT)")
 		if err != nil {
 			panic(err)
 		}
 		stmt.Exec()
 
-		stmt, err = db.Prepare("CREATE TABLE IF NOT EXISTS templates (id INTEGER PRIMARY KEY, mjml TEXT, html TEXT, text TEXT, subject TEXT)")
+		stmt, err = db.DbHandle.Prepare("CREATE TABLE IF NOT EXISTS templates (id INTEGER PRIMARY KEY, mjml TEXT, html TEXT, text TEXT, subject TEXT)")
 		if err != nil {
 			panic(err)
 		}
 		stmt.Exec()
 
 		// add a unique constraint to the email column if it does not exists
-		stmt, err = db.Prepare("CREATE UNIQUE INDEX IF NOT EXISTS email_unique ON emails (email)")
+		stmt, err = db.DbHandle.Prepare("CREATE UNIQUE INDEX IF NOT EXISTS email_unique ON emails (email)")
 		if err != nil {
 			panic(err)
 		}
@@ -69,7 +67,7 @@ func RunMigrations() {
 	})
 
 	Up("add-unsubscribe-id", func() {
-		stmt, err = db.Prepare("ALTER TABLE emails ADD COLUMN unsubscribeId TEXT")
+		stmt, err = db.DbHandle.Prepare("ALTER TABLE emails ADD COLUMN unsubscribeId TEXT")
 		if err != nil {
 			panic(err)
 		}
@@ -78,7 +76,7 @@ func RunMigrations() {
 			panic(err)
 		}
 
-		stmt, err = db.Prepare("UPDATE emails SET unsubscribeId = lower(hex(randomblob(32))) WHERE unsubscribeId IS NULL")
+		stmt, err = db.DbHandle.Prepare("UPDATE emails SET unsubscribeId = lower(hex(randomblob(32))) WHERE unsubscribeId IS NULL")
 		if err != nil {
 			panic(err)
 		}

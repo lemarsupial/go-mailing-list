@@ -10,8 +10,7 @@ type Session struct {
 }
 
 func GetSession(sessionId string) (Session, error) {
-	db := db.GetDB()
-	stmt, err := db.Prepare("SELECT id, sessionId FROM sessions WHERE sessionId = ?")
+	stmt, err := db.DbHandle.Prepare("SELECT id, sessionId FROM sessions WHERE sessionId = ?")
 	if err != nil {
 		return Session{}, err
 	}
@@ -27,8 +26,7 @@ func GetSession(sessionId string) (Session, error) {
 }
 
 func CreateSession(email string) (Session, error) {
-	db := db.GetDB()
-	stmt, err := db.Prepare("INSERT INTO sessions (sessionId) VALUES (?) RETURNING id, sessionId")
+	stmt, err := db.DbHandle.Prepare("INSERT INTO sessions (sessionId) VALUES (?) RETURNING id, sessionId")
 	if err != nil {
 		return Session{}, err
 	}
@@ -44,8 +42,7 @@ func CreateSession(email string) (Session, error) {
 }
 
 func DeleteAllSessions() error {
-	db := db.GetDB()
-	stmt, err := db.Prepare("DELETE FROM sessions")
+	stmt, err := db.DbHandle.Prepare("DELETE FROM sessions")
 	if err != nil {
 		return err
 
